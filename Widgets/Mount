@@ -11,6 +11,8 @@ mkdir -p ~/E:
 sudo umount ~/E:
 sudo mount -t ntfs-3g /dev/nvme0n1p5 ~/E:
 
+ls ~/E:
+
 ### One drive uses some ``different'' kind of folder and simply linking it
 ### does not work. Will need to use the OneDrive tool after logging in graphical
 ### mode...

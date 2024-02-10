@@ -1,4 +1,5 @@
 # Term Desktop
+- ![](res/preview.png)
 - This is a collection of scripts and themes I use on my Open SUSE + KDE desktop
 - Sections below go over installation / usage of different components
 
