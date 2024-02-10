@@ -1,0 +1,22 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+BASHRC_DIR="${SCRIPT_DIR}/BashRcs"
+
+cat <<ENDCONF >.tmuxrc
+
+set -g status-bg orange
+set -g status-right "%H:%M"
+
+new
+splitw -h "bash --init-file ${BASHRC_DIR}/CmdList"
+resize-pane -R 70
+splitw -v "bash --init-file ${BASHRC_DIR}/Power"
+splitw -v "bash --init-file ${BASHRC_DIR}/Mount"
+splitw -v "bash --init-file ${BASHRC_DIR}/Network"
+bind -n 'M-Escape' kill-session
+bind -n 'M-F4' kill-pane
+
+ENDCONF
+
+tmux source-file .tmuxrc

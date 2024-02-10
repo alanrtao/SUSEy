@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source ~/.bashrc
+
+echo ".............................."
+echo "Custom Commands: "
+echo
+ls ~/TermDesktop | sed -e 's/^/.../g'
+echo "Alt + Esc to quit all"
+echo "Alt + F4 to quit panel"
+echo
+echo ".............................."
+echo
+echo
+echo "Start Power Management Under Mode 'Battery' ? (Ctrl + C to cancel)"
+sudo tlp battery

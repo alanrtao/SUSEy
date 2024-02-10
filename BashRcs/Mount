@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e # stop on failure
+
+echo "Mounting Windows E: drive at ~/E: (${HOME}/E:)..."
+mkdir -p ~/E:
+sudo umount ~/E:
+sudo mount -t ntfs-3g /dev/nvme0n1p5 ~/E:
+
+### One drive uses some ``different'' kind of folder and simply linking it
+### does not work. Will need to use the OneDrive tool after logging in graphical
+### mode...
+
+#TEMP=`mktemp /tmp/term-desk.XXXXXX`
+#ls ~/E:/OneDrive* > $TEMP # write to temp file so it is line-delimited
+#read OneDriveDir < $TEMP # read first line from written file
+
+#echo "Creating shortcut $HOME/OneDrive <-- ${OneDriveDir}"
+
+#rm -f ~/OneDrive
+#ln -s "${OneDriveDir}" $HOME/OneDrive

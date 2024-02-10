@@ -1,0 +1,20 @@
+#!/bin/bash
+
+read -p 'Start power management mode? (a=ac/b=battery/n)' pmode
+
+if [[ $pmode = 'a' ]]; then
+	sudo tlp ac
+elif [[ $pmode = 'b' ]]; then
+	sudo tlp battery
+else
+	echo '... canceled'
+fi
+
+COUNTDOWN=5
+
+for i in `seq $COUNTDOWN -1 1`; do
+	echo "... opening htop in $i"
+	sleep 1
+done
+
+htop
