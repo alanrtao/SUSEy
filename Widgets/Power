@@ -1,0 +1,31 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+WIDGET_DIR="${SCRIPT_DIR}"
+cd $WIDGET_DIR
+
+setterm --foreground 2
+
+read -p 'Power management? (a=ac/b=battery/n):' pow
+
+if [[ $pow = 'a' ]]; then
+	sudo tlp setcharge 0 80 BAT0
+	sudo tlp ac
+elif [[ $pow = 'b' ]]; then
+	
+	echo "... stopping bluetooth due to battery mode"
+	sudo systemctl stop bluetooth
+	sudo tlp bat
+
+	# display battery percentage
+	while true; do
+
+		POWER=`cat /sys/class/power_supply/BAT0/capacity`
+		echo -ne "${POWER}% `date`\r"
+		sleep 1
+
+	done
+
+else
+	echo '... canceled'
+fi

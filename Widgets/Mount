@@ -1,6 +1,10 @@
 #!/bin/bash
 
-set -e # stop on failure
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+WIDGET_DIR="${SCRIPT_DIR}"
+cd $WIDGET_DIR
+
+setterm --foreground 3
 
 echo "Mounting Windows E: drive at ~/E: (${HOME}/E:)..."
 mkdir -p ~/E:

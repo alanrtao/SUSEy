@@ -1,22 +1,47 @@
 #!/bin/bash
 
+function print_help() {
+	echo 'Starts a mini desktop environment with a few widgets'
+	echo ''
+	echo '.Usage:'
+	echo '\t./start'
+}
+
+if [[ $1 = help ]]; then
+	print_help
+	exit 0
+elif [[ $1 = '--help' ]]; then
+	print_help
+	exit 0
+fi
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-BASHRC_DIR="${SCRIPT_DIR}/BashRcs"
+WIDGET_DIR="${SCRIPT_DIR}/Widgets"
 
-cat <<ENDCONF >.tmuxrc
+tmux kill-session -a
+tmux new-session -s desktop -d
 
-set -g status-bg orange
+cat <<ENDCONF>.tmuxrc
+
+set -g pane-border-style 'fg=colour7,bg=default'
+set -g pane-active-border-style 'fg=colour3,bg=default'
+set -g status-style 'fg=white,bg=colour3'
+set-window-option -g window-status-style fg=colour3,bg=colour7
+set-window-option -g window-status-current-style fg=colour3,bg=colour7
+
 set -g status-right "%H:%M"
 
-new
-splitw -h "bash --init-file ${BASHRC_DIR}/CmdList"
-resize-pane -R 70
-splitw -v "bash --init-file ${BASHRC_DIR}/Power"
-splitw -v "bash --init-file ${BASHRC_DIR}/Mount"
-splitw -v "bash --init-file ${BASHRC_DIR}/Network"
+splitw -h "bash --init-file ${WIDGET_DIR}/CmdList"
+resize-pane -x "25%" -y "100%"
+splitw -v "bash --init-file ${WIDGET_DIR}/Power"
+resize-pane -x "25%" -y "75%"
+splitw -v "bash --init-file ${WIDGET_DIR}/Mount"
+resize-pane -x "25%" -y "50%"
+splitw -v "bash --init-file ${WIDGET_DIR}/Network"
+
 bind -n 'M-Escape' kill-session
-bind -n 'M-F4' kill-pane
 
 ENDCONF
 
-tmux source-file .tmuxrc
+tmux attach \; source-file .tmuxrc
+

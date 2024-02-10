@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+WIDGET_DIR="${SCRIPT_DIR}"
+cd $WIDGET_DIR
+
+setterm --foreground 5
+
+echo ".............................."
+echo "Custom Commands: "
+echo
+echo "... Alt + Esc to quit all"
+echo "... Alt + F4 to quit panel"
+echo
+echo ".............................."
