@@ -17,3 +17,16 @@
 ## Color Scheme
 - Copy the `.colors` file into `~/.local/share/color-schemes/`, restart and check appearance
 - Edit the theme in appearance settings then save
+
+# Other Theming Used
+- Global Theme: OpenSUSE
+- Application Style: Fusion
+- Plasma Style: OpenSUSE
+- Colors: [custom](Win7OS_Dark.colors)
+- Window Decorations: Aero-Vidrio (WVista)
+- Icons: WVista
+- Cursors: WindowsVista
+- SplashScreen: None
+- Wall Paper: (some pure color)
+- Window transparency rule:
+    - ![](res/window_transparency_rule.png)
